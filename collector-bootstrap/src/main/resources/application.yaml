@@ -1,0 +1,9 @@
+metax:
+  collector:
+    pacap:
+      network-interface-device-name: en0
+      network-interface-promiscuous-mode: true
+      snaplen: 65535
+      timeout-mills: 10
+      bpf-pattern:
+      bpf-compile-optimized-mode: true
