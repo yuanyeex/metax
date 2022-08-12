@@ -1,6 +1,8 @@
 package com.yuanyeex.metax.collector.netcap;
 
 import com.google.common.base.Preconditions;
+import com.yuanyeex.metax.collector.netcap.config.NetcapConfig;
+import com.yuanyeex.metax.collector.netcap.config.NetcapProperties;
 import org.apache.commons.lang3.StringUtils;
 import org.pcap4j.core.*;
 
@@ -17,40 +19,29 @@ class Pcap4jHelper {
     /**
      * Handler to start the pcap handler
      *
-     * @param properties properties with keys. Refer to {@link Options}
+     * @param config properties with keys.
      * @return opened pcap handler
      * @throws PcapNativeException pcap native excpetion
      * @throws NotOpenException    pcap handler is not open
      */
-    public static PcapHandle buildPcapHandler(Properties properties) throws PcapNativeException, NotOpenException {
-        PcapNetworkInterface pcapNetworkInterface = getPcapNetworkInterface(properties);
-        return openLiveHandler(pcapNetworkInterface, properties);
+    public static PcapHandle buildPcapHandler(NetcapProperties config) throws PcapNativeException, NotOpenException {
+        PcapNetworkInterface pcapNetworkInterface = getPcapNetworkInterface(config.getNetworkInterfaceDeviceName());
+        return openLiveHandler(pcapNetworkInterface, config);
     }
 
-    private static PcapHandle openLiveHandler(PcapNetworkInterface pcapNetworkInterface, Properties properties) throws PcapNativeException, NotOpenException {
-        Integer snapLen = Optional.ofNullable(properties.getProperty(Options.PCAP_SNAPLEN))
-                .map(Integer::parseInt)
-                .orElse(65536);
+    private static PcapHandle openLiveHandler(PcapNetworkInterface pcapNetworkInterface, NetcapProperties properties) throws PcapNativeException, NotOpenException {
+        Integer snapLen = properties.getSnaplen();
 
-        Integer timeout = Optional.ofNullable(properties.getProperty(Options.PCAP_TIMEOUT_MILLS))
-                .map(Integer::parseInt)
-                .orElse(10);
+        Integer timeout = properties.getTimeoutMills();
 
-        Boolean promiscuousModel = Optional.ofNullable(properties.getProperty(Options.PCAP_NETWORK_INTERFACE_PROMISCOUS_MODE))
-                .map(Boolean::valueOf)
-                .orElse(true);
-        PcapNetworkInterface.PromiscuousMode promiscuousMode = promiscuousModel
+        PcapNetworkInterface.PromiscuousMode promiscuousMode = properties.isNetworkInterfacePromiscuousMode()
                 ? PcapNetworkInterface.PromiscuousMode.PROMISCUOUS
                 : PcapNetworkInterface.PromiscuousMode.NONPROMISCUOUS;
 
-        String bpfPattern = Optional.ofNullable(properties.getProperty(Options.PCAP_BPF_PATTERN))
+        String bpfPattern = Optional.ofNullable(properties.getBpfPattern())
                 .orElse("");
 
-        Boolean bpfOptimizedMode = Optional.ofNullable(properties.getProperty(Options.PCAP_BPF_OPTIMIZED_MODE))
-                .map(Boolean::valueOf)
-                .orElse(true);
-
-        BpfProgram.BpfCompileMode compileMode = bpfOptimizedMode
+        BpfProgram.BpfCompileMode compileMode = properties.isBpfCompileOptimizedMode()
                 ? BpfProgram.BpfCompileMode.OPTIMIZE
                 : BpfProgram.BpfCompileMode.NONOPTIMIZE;
 
@@ -59,13 +50,6 @@ class Pcap4jHelper {
         pcapHandle.setFilter(bpfPattern, compileMode);
 
         return pcapHandle;
-    }
-
-
-    private static PcapNetworkInterface getPcapNetworkInterface(Properties properties) throws PcapNativeException {
-        String deviceName = properties.getProperty(Options.PCAP_NETWORK_INTERFACE_DEVICE_NAME);
-
-        return getPcapNetworkInterface(deviceName);
     }
 
     private static PcapNetworkInterface getPcapNetworkInterface(String deviceName) throws PcapNativeException {
