@@ -16,7 +16,7 @@
     <packaging>pom</packaging>
     <version>${revision}</version>
     <modules>
-        <module>netcap</module>
+        <module>collector-netcap</module>
         <module>collector-common</module>
     </modules>
 
