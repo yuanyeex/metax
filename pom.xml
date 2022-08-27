@@ -18,6 +18,7 @@
     <modules>
         <module>collector-netcap</module>
         <module>collector-common</module>
+        <module>collector-bootstrap</module>
     </modules>
 
     <properties>
