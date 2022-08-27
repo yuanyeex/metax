@@ -31,6 +31,11 @@
         <dependencies>
             <dependency>
                 <groupId>com.yuanyeex</groupId>
+                <artifactId>collector-netcap</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.yuanyeex</groupId>
                 <artifactId>collector-common</artifactId>
                 <version>${revision}</version>
             </dependency>

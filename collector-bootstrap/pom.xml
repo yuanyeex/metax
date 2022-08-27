@@ -31,9 +31,7 @@
         </dependency>
         <dependency>
             <groupId>com.yuanyeex</groupId>
-            <artifactId>netcap</artifactId>
-            <version>0.0.1</version>
-            <scope>compile</scope>
+            <artifactId>collector-netcap</artifactId>
         </dependency>
     </dependencies>
 
