@@ -1,13 +1,16 @@
 package com.yuanyeex.metax.collector.netcap;
 
 import com.google.common.base.Preconditions;
-import com.yuanyeex.metax.collector.netcap.config.NetcapConfig;
 import com.yuanyeex.metax.collector.netcap.config.NetcapProperties;
 import org.apache.commons.lang3.StringUtils;
-import org.pcap4j.core.*;
+import org.pcap4j.core.BpfProgram;
+import org.pcap4j.core.NotOpenException;
+import org.pcap4j.core.PcapHandle;
+import org.pcap4j.core.PcapNativeException;
+import org.pcap4j.core.PcapNetworkInterface;
+import org.pcap4j.core.Pcaps;
 
 import java.util.Optional;
-import java.util.Properties;
 
 /**
  * Helper for open pcap handler
