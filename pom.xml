@@ -30,6 +30,11 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>com.yuanyeex.metax</groupId>
+                <artifactId>collector-bootstrap</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.yuanyeex</groupId>
                 <artifactId>collector-netcap</artifactId>
                 <version>${revision}</version>
