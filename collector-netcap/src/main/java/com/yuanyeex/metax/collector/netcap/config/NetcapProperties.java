@@ -6,6 +6,9 @@ import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Netcap configurations
  *
@@ -29,4 +32,8 @@ public class NetcapProperties {
     private String bpfPattern = "";
 
     private boolean bpfCompileOptimizedMode = true;
+
+    private boolean enable = false;
+
+    private List<String> modules = new ArrayList<>();
 }

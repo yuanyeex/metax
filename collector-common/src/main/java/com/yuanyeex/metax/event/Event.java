@@ -7,6 +7,7 @@ package com.yuanyeex.metax.event;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.yuanyeex.metax.event.netcap.CompactEvent;
 import com.yuanyeex.metax.event.netcap.DnsResolveEvent;
 import com.yuanyeex.metax.event.netcap.TcpTrafficEvent;
 import lombok.EqualsAndHashCode;
@@ -23,7 +24,8 @@ import lombok.ToString;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "name", visible = true)
 @JsonSubTypes({
         @JsonSubTypes.Type(value = TcpTrafficEvent.class, name = "TCP_TRAFFIC"),
-        @JsonSubTypes.Type(value = DnsResolveEvent.class, name = "DNS_PACKET")
+        @JsonSubTypes.Type(value = DnsResolveEvent.class, name = "DNS_PACKET"),
+        @JsonSubTypes.Type(value = CompactEvent.class, name = "COMPACT_EVENT")
 })
 @Getter
 @Setter
