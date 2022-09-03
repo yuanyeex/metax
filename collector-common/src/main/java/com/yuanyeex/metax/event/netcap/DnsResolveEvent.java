@@ -46,5 +46,6 @@ public class DnsResolveEvent extends Event {
     private String host;
 
     public DnsResolveEvent() {
-        super(EventNameEnum.DNS_PACKET.name());}
+        super(EventNameEnum.DNS_PACKET.name());
+    }
 }
