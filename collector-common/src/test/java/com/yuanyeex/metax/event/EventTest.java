@@ -5,10 +5,15 @@
 package com.yuanyeex.metax.event;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.yuanyeex.metax.event.netcap.CompactEvent;
 import com.yuanyeex.metax.event.netcap.DnsResolveEvent;
 import com.yuanyeex.metax.event.netcap.TcpTrafficEvent;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import sun.jvm.hotspot.utilities.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author oex.zh
@@ -60,4 +65,36 @@ public class EventTest {
         Assertions.assertEquals(dnsResolveEvent, event);
     }
 
+    @Test
+    public void testCompactEvent() throws JsonProcessingException {
+        DnsResolveEvent dnsResolveEvent = new DnsResolveEvent();
+        dnsResolveEvent.setQuery("www.baidu.com");
+        dnsResolveEvent.setDnsClass("11");
+        dnsResolveEvent.setRecordType("A");
+        dnsResolveEvent.setResponse("123.123.12.12");
+
+        TcpTrafficEvent tcpTrafficEvent = new TcpTrafficEvent();
+        tcpTrafficEvent.setEpoch(1661698423501L);
+        tcpTrafficEvent.setSrcAddr("127.0.0.1");
+        tcpTrafficEvent.setSrcPort(129);
+        tcpTrafficEvent.setDstAddr("192.168.31.1");
+        tcpTrafficEvent.setDstPort(1022);
+        tcpTrafficEvent.setLength(100023L);
+
+        CompactEvent compactEvent = new CompactEvent();
+        List<Event> events = new ArrayList<>();
+        events.add(dnsResolveEvent);
+        events.add(tcpTrafficEvent);
+        compactEvent.setEvents(events);
+
+
+        String parsed = EventMapper.mapper(compactEvent);
+
+        System.out.println(parsed);
+
+        Event parse = EventMapper.parse(parsed);
+        Assertions.assertNotNull(parse);
+        Assertions.assertTrue(parse instanceof CompactEvent);
+        Assertions.assertEquals(compactEvent, parse);
+    }
 }

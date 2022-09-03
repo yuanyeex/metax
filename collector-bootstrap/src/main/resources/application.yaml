@@ -1,6 +1,10 @@
 metax:
   collector:
     pacap:
+      enable: true
+      modules:
+        - dns
+        - traffic
       network-interface-device-name: en0
       network-interface-promiscuous-mode: true
       snaplen: 65535

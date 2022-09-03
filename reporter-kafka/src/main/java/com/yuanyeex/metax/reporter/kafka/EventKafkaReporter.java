@@ -35,7 +35,8 @@ public class EventKafkaReporter implements Reporter<Event>, InitializingBean {
 
     @Override
     public boolean report(Event data) {
-        ListenableFuture<SendResult<String, Event>> send = eventKafkaTemplate.send("", data);
+        log.info("Report {}", data);
+        ListenableFuture<SendResult<String, Event>> send = eventKafkaTemplate.send("quickstart-events", data);
         send.addCallback(KafkaSendListenableFutureCallback.CALL_BACK);
         return true;
     }

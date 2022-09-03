@@ -16,5 +16,9 @@ public enum EventNameEnum {
     /**
      * TCP traffic
      */
-    TCP_TRAFFIC;
+    TCP_TRAFFIC,
+    /**
+     * Compact event
+     */
+    COMPACT_EVENT;
 }
