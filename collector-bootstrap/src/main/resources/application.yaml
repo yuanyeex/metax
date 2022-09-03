@@ -7,3 +7,7 @@ metax:
       timeout-mills: 10
       bpf-pattern:
       bpf-compile-optimized-mode: true
+  reporter:
+    kafka:
+      bootstrapAddress: k8s-master:9092
+      topic: event-reporter

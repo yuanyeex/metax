@@ -33,6 +33,18 @@
             <groupId>com.yuanyeex</groupId>
             <artifactId>collector-netcap</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.yuanyeex</groupId>
+            <artifactId>collector-domain</artifactId>
+            <version>0.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.yuanyeex</groupId>
+            <artifactId>reporter-kafka</artifactId>
+            <version>0.0.1</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>

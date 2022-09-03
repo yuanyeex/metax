@@ -5,11 +5,11 @@
     <parent>
         <artifactId>metax</artifactId>
         <groupId>com.yuanyeex</groupId>
-        <version>0.0.1</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>collector-reporter</artifactId>
+    <artifactId>collector-domain</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -18,8 +18,24 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yuanyeex</groupId>
+            <artifactId>collector-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
         </dependency>
     </dependencies>
+
 </project>

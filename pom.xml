@@ -19,7 +19,8 @@
         <module>collector-netcap</module>
         <module>collector-common</module>
         <module>collector-bootstrap</module>
-        <module>collector-reporter</module>
+        <module>reporter-kafka</module>
+        <module>collector-domain</module>
     </modules>
 
     <properties>
@@ -88,6 +89,11 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.36</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
