@@ -10,7 +10,6 @@ import com.yuanyeex.metax.event.netcap.DnsResolveEvent;
 import com.yuanyeex.metax.event.netcap.TcpTrafficEvent;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import sun.jvm.hotspot.utilities.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
