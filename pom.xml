@@ -21,6 +21,7 @@
         <module>collector-bootstrap</module>
         <module>reporter-kafka</module>
         <module>collector-domain</module>
+        <module>tools/common-utils</module>
     </modules>
 
     <properties>
